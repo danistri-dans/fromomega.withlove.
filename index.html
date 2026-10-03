@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Our Little Memories</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Pacifico&family=Quicksand:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#fff5f8;--bg2:#fdeaf1;--card:#fffdf9;--ink:#5b3b4a;--soft:#8a6475;--pink:#f9c6d6;--pink2:#f08fb2;--lav:#dccbf5;--peach:#ffd9c2;--cream:#fff3dc;--sh:rgba(214,120,160,.25);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1d27;--bg2:#35232f;--card:#42303c;--ink:#fbe9f1;--soft:#d9b8c8;--pink:#6b3d52;--pink2:#e58fb0;--lav:#5a4a7a;--peach:#7a5645;--cream:#4a3a38;--sh:rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#2a1d27;--bg2:#35232f;--card:#42303c;--ink:#fbe9f1;--soft:#d9b8c8;--pink:#6b3d52;--pink2:#e58fb0;--lav:#5a4a7a;--peach:#7a5645;--cream:#4a3a38;--sh:rgba(0,0,0,.35)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,var(--bg),var(--bg2) 50%,var(--bg));color:var(--ink);font-family:Quicksand,system-ui,sans-serif;line-height:1.7;overflow-x:hidden}
+h1,h2,.script{font-family:Pacifico,cursive;font-weight:400;line-height:1.3}
+.hand{font-family:Caveat,cursive}
+#fl{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+#fl span{position:absolute;bottom:-40px;opacity:.55;animation:up linear infinite}
+@keyframes up{to{transform:translateY(-115vh) rotate(40deg)}}
+.sec{position:relative;z-index:1;min-height:100svh;padding:64px 20px 110px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.wrap{width:100%;max-width:640px}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s}
+.rv.in{opacity:1;transform:none}
+.cat{width:84px;height:76px}
+h1{font-size:clamp(1.9rem,8vw,3.2rem);margin:.4em 0;color:var(--pink2)}
+h2{font-size:clamp(1.6rem,6vw,2.3rem);margin:0 0 .5em;color:var(--pink2)}
+.sub{color:var(--soft);max-width:460px;margin:0 auto 1.4em}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;padding:14px 28px;background:var(--pink2);color:#fff;box-shadow:0 8px 20px var(--sh);cursor:pointer;transition:transform .3s}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.tag{display:inline-block;background:var(--cream);border:2px dashed var(--pink2);border-radius:999px;padding:4px 16px;font-size:.85rem;margin-bottom:10px}
+.card{background:var(--card);border-radius:26px;padding:26px 22px;box-shadow:0 10px 30px var(--sh);position:relative;text-align:left}
+.card::before{content:"🎀";position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:1.8rem}
+.card p{margin:.7em 0}
+.sign{text-align:right;font-size:1.7rem;color:var(--pink2)}
+/* calendar */
+.tabs{display:flex;gap:8px;justify-content:center;margin-bottom:14px}
+.tabs button{font:inherit;font-weight:700;border:2px solid var(--pink2);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 16px;cursor:pointer}
+.tabs button.on{background:var(--pink2);color:#fff}
+.cal{--acc:var(--pink);background:var(--card);border-radius:26px;padding:18px 14px;box-shadow:0 10px 30px var(--sh);border-top:12px solid var(--acc)}
+.cal[data-m="1"]{--acc:var(--lav)}.cal[data-m="2"]{--acc:var(--peach)}
+.cal h3{font-family:Pacifico,cursive;font-weight:400;margin:0 0 8px;font-size:1.4rem}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.grid.swap{animation:sw .5s}
+@keyframes sw{from{opacity:0;transform:translateX(24px)}}
+.grid b{font-size:.72rem;color:var(--soft)}
+.d{aspect-ratio:1;border:0;border-radius:12px;background:color-mix(in srgb,var(--acc) 35%,transparent);color:var(--ink);font:inherit;font-size:.85rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;padding:0}
+.d i{font-style:normal;font-size:.8rem;color:var(--pink2);min-height:.9em}
+.d.m{background:var(--acc)}
+.hint{font-size:.85rem;color:var(--soft);margin-top:10px}
+/* memories */
+.notes{display:grid;gap:18px;grid-template-columns:1fr;max-width:900px;width:100%}
+@media(min-width:700px){.notes{grid-template-columns:repeat(3,1fr)}}
+.note{background:var(--cream);border-radius:6px 6px 22px 6px;padding:26px 18px 20px;box-shadow:4px 8px 18px var(--sh);position:relative;transform:rotate(-2deg);text-align:left}
+.note:nth-child(2n){transform:rotate(2deg);background:var(--pink)}
+.note:nth-child(3n){background:var(--lav);transform:rotate(-1deg)}
+.note:nth-child(5){background:var(--peach)}
+.note::before,.fr::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:20px;transform:translateX(-50%) rotate(-3deg);background:rgba(255,255,255,.65);border:1px dashed var(--pink2);z-index:2}
+.note h4{margin:0 0 4px;font-family:Caveat,cursive;font-size:1.5rem}
+.note p{margin:0;font-size:.92rem}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:22px 14px;max-width:880px;width:100%;align-items:start}
+@media(min-width:760px){.gal{grid-template-columns:repeat(3,1fr)}}
+.fr{position:relative;background:var(--card);box-shadow:0 8px 22px var(--sh);padding:10px 10px 8px;transform:rotate(var(--r,-2deg));transition:transform .4s}
+.fr:hover{transform:rotate(0) scale(1.03)}
+.fr::after{content:attr(data-st);position:absolute;right:-8px;bottom:26px;font-size:1.6rem;z-index:2}
+.fr.pol{padding-bottom:14px}.fr.rr{border-radius:28px}.fr.scr{background:var(--cream);border:3px dotted var(--pink2)}
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--bg2);aspect-ratio:var(--ar,1);cursor:pointer;overflow:hidden;font-size:.75rem;color:var(--soft);position:relative}
+.fr.rr .ph{border-radius:20px}
+.ph input{display:none}
+.ph img.ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .cat{width:46px;height:42px}
+.cap{font-family:Caveat,cursive;font-size:1.25rem;margin:6px 0 0;outline:0;line-height:1.2}
+/* closing */
+.big{font-size:clamp(1.5rem,6vw,2.2rem)}
+/* nav */
+nav{position:fixed;left:50%;bottom:calc(10px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;display:flex;gap:2px;background:var(--card);padding:6px;border-radius:999px;box-shadow:0 6px 20px var(--sh)}
+nav a{text-decoration:none;font-size:1.25rem;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;transition:background .3s}
+nav a.on{background:var(--pink)}
+#mus{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:12px;z-index:20;width:44px;height:44px;border-radius:50%;border:0;background:var(--card);box-shadow:0 6px 16px var(--sh);font-size:1.2rem;cursor:pointer}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="cat" viewBox="0 0 100 90"><path d="M15 40 20 8 42 24Q50 22 58 24L80 8 85 40Q92 55 80 70Q68 84 50 84 32 84 20 70 8 55 15 40Z" fill="#fff" stroke="#5b3b4a" stroke-width="3" stroke-linejoin="round"/><path d="M24 18 33 25 25 33ZM76 18 67 25 75 33Z" fill="#f9c6d6"/><circle cx="36" cy="47" r="4" fill="#5b3b4a"/><circle cx="64" cy="47" r="4" fill="#5b3b4a"/><ellipse cx="27" cy="58" rx="7" ry="4" fill="#f9a8c4" opacity=".7"/><ellipse cx="73" cy="58" rx="7" ry="4" fill="#f9a8c4" opacity=".7"/><path d="M46 56h8l-4 4Z" fill="#f08fb2"/><path d="M50 60Q46 67 41 63M50 60Q54 67 59 63" fill="none" stroke="#5b3b4a" stroke-width="2.5" stroke-linecap="round"/><path d="M8 52 22 55M8 62 22 60M92 52 78 55M92 62 78 60" stroke="#5b3b4a" stroke-width="2" stroke-linecap="round"/></symbol></svg>
+<div id="fl" aria-hidden="true"></div>
+<button id="mus" aria-label="Putar musik" title="Musik">🎵</button>
+<nav aria-label="Navigasi">
+<a href="#buka" aria-label="Pembuka">🏠</a><a href="#ucapan" aria-label="Ucapan">💌</a><a href="#kalender" aria-label="Kalender">📅</a><a href="#kenangan" aria-label="Kenangan">🧸</a><a href="#galeri" aria-label="Galeri">📸</a><a href="#penutup" aria-label="Penutup">🎀</a>
+</nav>
+
+<section class="sec" id="buka"><div class="wrap rv">
+<svg class="cat"><use href="#cat"/></svg>
+<div class="tag">✿ Omega Digital Printing · Juli – September ✿</div>
+<h1>Three Months,<br>A Million Memories.</h1>
+<p class="sub">Tiga bulan mungkin terasa singkat, tapi kenangan dan orang-orang yang hadir di dalamnya akan selalu punya tempat tersendiri di hati kami.</p>
+<button class="btn" id="open">Buka Kenangan Kita ♡</button>
+<p class="hand" style="font-size:1.4rem;color:var(--soft);margin-top:18px">Our Little Memories</p>
+</div></section>
+
+<section class="sec" id="ucapan"><div class="wrap rv">
+<h2>Untuk Kalian 💌</h2>
+<div class="card">
+<p><b>Untuk Amelia, Dwi Amelya, Arlin, Karissa, dan Imelda,</b></p>
+<p>Tiga bulan lalu kita belum saling kenal. Sekarang, rasanya aneh membayangkan besok sudah tidak ada lagi sapaan hangat di Omega Digital Printing. Terima kasih ya, sudah menemani kami dari Juli sampai September. Terima kasih sudah membantu kami beradaptasi, berbagi cerita, tawa, pengalaman, dan banyak pelajaran baru.</p>
+<p>Kalau selama kebersamaan ini ada perkataan atau sikap kami yang kurang berkenan, kami minta maaf sebesar-besarnya ya. Semuanya tidak pernah disengaja.</p>
+<p>Kami doakan kalian selalu diberi kesehatan, dimudahkan dalam meraih cita-cita, sukses, dan bahagia di mana pun nanti berada.</p>
+<p>PKL boleh selesai, tapi pertemanan kita jangan ya. Tetap saling sapa dan saling cerita 🤍</p>
+<div class="sign hand">— Enjelica &amp; Vania</div>
+</div></div></section>
+
+<section class="sec" id="kalender"><div class="wrap rv">
+<h2>Kalender Kenangan 📅</h2>
+<div class="tabs" id="tabs"></div>
+<div class="cal" id="cal" data-m="0"><h3 id="mt"></h3><div class="grid" id="grid"></div></div>
+<p class="hint">Ketuk tanggal untuk menandai hari berkesan: ♥ lalu ★ lalu kosong lagi.</p>
+</div></section>
+
+<section class="sec" id="kenangan"><div class="wrap rv" style="max-width:900px">
+<h2>Kenangan Bersama 🧸</h2>
+<p class="sub">Potongan-potongan kecil dari tiga bulan yang kami simpan di album digital ini.</p>
+</div>
+<div class="notes rv">
+<div class="note"><h4>Kerja bareng 🖨️</h4><p>Dari hari yang santai sampai yang super sibuk, selalu ada yang siap membantu.</p></div>
+<div class="note"><h4>Belajar hal baru ✨</h4><p>Banyak hal yang tidak ada di buku pelajaran, kami dapat dari kalian.</p></div>
+<div class="note"><h4>Bercanda 😆</h4><p>Tawa receh yang bikin lelah jadi hilang.</p></div>
+<div class="note"><h4>Saling membantu 🤝</h4><p>Kalau ada yang bingung, selalu ada yang mengulurkan tangan.</p></div>
+<div class="note"><h4>Cerita-cerita kecil 🌷</h4><p>Obrolan ringan yang diam-diam jadi kenangan besar.</p></div>
+<div class="note"><h4>Hari biasa, rasa istimewa 💗</h4><p>Ternyata hari biasa bersama kalian itulah yang paling kami rindukan.</p></div>
+</section>
+
+<section class="sec" id="galeri"><div class="wrap rv" style="max-width:900px">
+<h2>Galeri Kita 📸</h2>
+<p class="sub">Ketuk bingkai untuk menambahkan foto. Caption juga bisa diketik ulang.</p>
+</div><div class="gal rv" id="gal"></div></section>
+
+<section class="sec" id="penutup"><div class="wrap rv">
+<svg class="cat"><use href="#cat"/></svg>
+<h2 class="big">The chapter may end,<br>but the memories will stay.</h2>
+<p class="sub">Terima kasih untuk setiap tawa, bantuan, dan cerita. Doa terbaik kami menyertai Amelia, Dwi Amelya, Arlin, Karissa, dan Imelda: sehat selalu, sukses, dan bahagia. 🌸</p>
+<p class="hand" style="font-size:1.6rem;margin:1em 0 0">With love,</p>
+<p class="script" style="color:var(--pink2);font-size:1.7rem;margin:.2em 0">Enjelica &amp; Vania</p>
+<p class="hand" style="font-size:1.2rem;color:var(--soft);margin:0">SMKN 1 Mejayan, Klangon</p>
+</div></section>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// floating decor
+const em=['💗','🌸','✨','🎀','🤍','⭐'];
+for(let i=0;i<14;i++){const s=document.createElement('span');s.textContent=em[i%6];s.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*14}px;animation-duration:${16+Math.random()*14}s;animation-delay:-${Math.random()*25}s`;$('#fl').appendChild(s)}
+// reveal + active nav
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.15});
+$$('.rv').forEach(e=>io.observe(e));
+const io2=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)$$('nav a').forEach(a=>a.classList.toggle('on',a.hash==='#'+x.target.id))}),{threshold:.5});
+$$('.sec').forEach(e=>io2.observe(e));
+// music (soft synth, no external file)
+let ac,on=false,tm,st=0;
+const mel=[523.25,659.25,783.99,659.25,587.33,783.99,880,783.99,659.25,523.25,587.33,659.25,587.33,493.88,523.25,392],bass=[130.81,110,87.31,98];
+function note(f,t,d,g){const o=ac.createOscillator(),v=ac.createGain();o.frequency.value=f;v.gain.setValueAtTime(0,t);v.gain.linearRampToValueAtTime(g,t+.04);v.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(v);v.connect(ac.destination);o.start(t);o.stop(t+d)}
+function tick(){if(!on)return;const t=ac.currentTime+.05;note(mel[st%16],t,1.8,.07);if(st%4===0)note(bass[(st/4|0)%4],t,3,.08);st++;tm=setTimeout(tick,680)}
+function music(want){try{if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();ac.resume();if(want===on)return;on=want;$('#mus').textContent=on?'🔊':'🎵';$('#mus').setAttribute('aria-label',on?'Jeda musik':'Putar musik');on?tick():clearTimeout(tm)}catch(e){}}
+$('#mus').onclick=()=>music(!on);
+$('#open').onclick=()=>{music(true);$('#ucapan').scrollIntoView({behavior:'smooth'})};
+// calendar
+const Y=2026,M=[['Juli',6],['Agustus',7],['September',8]];let cur=0,marks={};
+try{marks=JSON.parse(localStorage.getItem('olm')||'{}')}catch(e){}
+const sym=['','♥','★'];
+function draw(){const[n,m]=M[cur];$('#cal').dataset.m=cur;$('#mt').textContent='🌸 '+n+' '+Y+' 🎀';
+const off=(new Date(Y,m,1).getDay()+6)%7,days=new Date(Y,m+1,0).getDate();
+let h=['Sen','Sel','Rab','Kam','Jum','Sab','Min'].map(x=>`<b>${x}</b>`).join('')+'<span></span>'.repeat(off);
+for(let d=1;d<=days;d++){const k=m+'-'+d,v=marks[k]||0;h+=`<button class="d${v?' m':''}" data-k="${k}">${d}<i>${sym[v]}</i></button>`}
+const g=$('#grid');g.innerHTML=h;g.classList.remove('swap');void g.offsetWidth;g.classList.add('swap');
+$$('#tabs button').forEach((b,i)=>b.classList.toggle('on',i===cur))}
+M.forEach((x,i)=>{const b=document.createElement('button');b.textContent=x[0];b.onclick=()=>{cur=i;draw()};$('#tabs').appendChild(b)});
+$('#grid').onclick=e=>{const b=e.target.closest('.d');if(!b)return;const k=b.dataset.k;marks[k]=((marks[k]||0)+1)%3;try{localStorage.setItem('olm',JSON.stringify(marks))}catch(e){}
+b.classList.toggle('m',!!marks[k]);b.querySelector('i').textContent=sym[marks[k]]};
+draw();
+// gallery: isi src dengan nama file foto untuk memasang foto langsung
+const G=[
+{c:'pol',ar:'1',cap:'Hari pertama kita ✨',st:'🌸',r:-3,src:''},
+{c:'rr',ar:'3/4',cap:'Kerja bareng, ketawa bareng',st:'💗',r:2,src:''},
+{c:'scr',ar:'4/3',cap:'Momen paling random',st:'⭐',r:-1,src:''},
+{c:'rr',ar:'1',cap:'Cerita yang tak habis',st:'🎀',r:3,src:''},
+{c:'pol',ar:'4/5',cap:'Hari biasa yang istimewa',st:'🌷',r:-2,src:''},
+{c:'scr',ar:'1',cap:'Sampai jumpa, ya 🤍',st:'💗',r:2,src:''}];
+G.forEach(g=>{const f=document.createElement('div');f.className='fr '+g.c;f.dataset.st=g.st;f.style.setProperty('--r',g.r+'deg');
+f.innerHTML=`<label class="ph" style="--ar:${g.ar}"><svg class="cat"><use href="#cat"/></svg>tambah foto<input type="file" accept="image/*"></label><p class="cap" contenteditable="true">${g.cap}</p>`;
+const ph=f.querySelector('.ph');const put=u=>{let i=ph.querySelector('img');if(!i){i=document.createElement('img');i.className='ph-img';i.alt=g.cap;ph.appendChild(i)}i.src=u};
+if(g.src)put(g.src);
+f.querySelector('input').onchange=e=>{const x=e.target.files[0];if(x)put(URL.createObjectURL(x))};
+$('#gal').appendChild(f)});
+</script>
+</body>
+</html>
